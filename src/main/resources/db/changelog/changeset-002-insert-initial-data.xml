@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="002" author="codingTogether">
+        <!-- Insertar roles iniciales -->
+        <insert tableName="role">
+            <column name="name" value="ADMIN"/>
+        </insert>
+        <insert tableName="role">
+            <column name="name" value="MANAGER"/>
+        </insert>
+
+        <!-- Insertar usuarios iniciales -->
+        <insert tableName="user-data">
+            <column name="username" value="admin"/>
+            <column name="password" value="$2a$10$wzqjIqT5nHv.KO4x.CddEOB2IwS09BZZXzPRTYVZBeDyO9Xo/LPSe"/> <!-- Contraseña: password -->
+        </insert>
+        <insert tableName="user-data">
+            <column name="username" value="manager"/>
+            <column name="password" value="$2a$10$wzqjIqT5nHv.KO4x.CddEOB2IwS09BZZXzPRTYVZBeDyO9Xo/LPSe"/> <!-- Contraseña: password -->
+        </insert>
+
+        <!-- Asignar roles a usuarios -->
+        <insert tableName="user_roles">
+            <column name="user_id" value="1"/> <!-- ID del usuario admin -->
+            <column name="role_id" value="1"/> <!-- ID del rol ROLE_ADMIN -->
+        </insert>
+        <insert tableName="user_roles">
+            <column name="user_id" value="2"/> <!-- ID del usuario manager -->
+            <column name="role_id" value="2"/> <!-- ID del rol MANAGER -->
+        </insert>
+    </changeSet>
+</databaseChangeLog>
